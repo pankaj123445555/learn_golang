@@ -1,19 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"net/http"
+	router "create_server/Router"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	port := ":8080"
-	r := mux.NewRouter()
-
-	SetUpRouter(r)
-
-	fmt.Println(`server is running on Port :`, port)
-	log.Fatal(http.ListenAndServe(port, r))
+	r := gin.Default()
+	router.SetUpRouter(r)
+	// r.GET("/user")
+	r.Run(":5000")
 }
